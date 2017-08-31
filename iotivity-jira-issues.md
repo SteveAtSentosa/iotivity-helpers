@@ -24,7 +24,7 @@ Not being worked on actively (as far as I can tell)
 - Bug [IOT-2647](https://jira.iotivity.org/browse/IOT-2647): CT1.7.8.3: printCRL read buffer overrun
 - Bug [IOT-2418](https://jira.iotivity.org/browse/IOT-2418): [RI] Linked-list query response(GET) of default callback of collection is improper for OCF1.0
 - Bug [IOT-2398](https://jira.iotivity.org/browse/IOT-2396): Unable to transfer ownership for upnp-bridge
-- Bug [IOT-1935](https://jira.iotivity.org/browse/IOT-1935): Resource directory does not expire entries after lifetime has expired
+- **Bug [IOT-1935](https://jira.iotivity.org/browse/IOT-1935): Resource directory does not expire entries after lifetime has expired**
 
 #### P2: Status = In Progress
 
@@ -37,5 +37,5 @@ Not being worked on actively (as far as I can tell)
 * Bug [IOT-1784](https://jira.iotivity.org/browse/IOT-2107): Update and clarify security documentation for app developers
 * Bug [IOT-1505](https://jira.iotivity.org/browse/IOT-2107): Security Layer implementation of CRUDN permissions is incomplete
 - Bug [IOT-2644](https://jira.iotivity.org/browse/IOT-2107): CTT error = CT_Precondition: IUT does not respond to /oic/sec/doxm
-- Bug [IOT-1787](https://jira.iotivity.org/browse/IOT-2107): Unit tests don't cover Security Resource Manager Policy Engine
+- **Bug [IOT-1787](https://jira.iotivity.org/browse/IOT-2107): Unit tests don't cover Security Resource Manager Policy Engine**
 - Bug [IOT-948](https://jira.iotivity.org/browse/IOT-2107): Align POST/PUT usage among all IoTivity samples
