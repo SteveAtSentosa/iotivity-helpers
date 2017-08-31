@@ -37,5 +37,5 @@ Not being worked on actively (as far as I can tell)
 * Bug [IOT-1784](https://jira.iotivity.org/browse/IOT-1784): Update and clarify security documentation for app developers
 * Bug [IOT-1505](https://jira.iotivity.org/browse/IOT-1505): Security Layer implementation of CRUDN permissions is incomplete
 - Bug [IOT-2644](https://jira.iotivity.org/browse/IOT-2644): CTT error = CT_Precondition: IUT does not respond to /oic/sec/doxm
-- **Bug [IOT-1787](https://jira.iotivity.org/browse/IOT-2787): Unit tests don't cover Security Resource Manager Policy Engine**
+- **Bug [IOT-1787](https://jira.iotivity.org/browse/IOT-1787): Unit tests don't cover Security Resource Manager Policy Engine**
 - Bug [IOT-948](https://jira.iotivity.org/browse/IOT-984): Align POST/PUT usage among all IoTivity samples
