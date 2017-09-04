@@ -153,6 +153,8 @@ Accept all of the defaults on the next dialog by hitting `Next`
 
 `CT 1.7.4.2` is known to pass.  Unselect all tests except this one, and hit the green play button `>` in the upper left of the CTT test app.
 
+> Currently the test `CT 1.7.4.2` is located in the `Security CR35/36/48` test group
+
 You may be promted for a pin, if so, sampleserver_randompin will have generated one, and printed it to the Ubnutu terminal.  Enter the PIN into the CTT and hit `Set Value`
 
 If everything is configured correctly, this test should run to completion and pass. You will know that the test passed from this line shown near the bottom of the CTT log
