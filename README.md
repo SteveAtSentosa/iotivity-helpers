@@ -12,50 +12,124 @@ The environment outlined in this guide is focused on running the CTT and IoTivit
 * Computer running windows
 * Ubuntu 16.04 as a VM on VirtualBox
 
-This guide assumes that you have basic familiarity with setting up a VM and with Ubuntu
+This guide assumes that you have basic familiarity with setting up a VM and with Windows and Ubuntu
 
 ## Create an Ubuntu VM
 
-1. Download and install the latest version of [Virtual Box](https://www.virtualbox.org/)
+**Install IoTivity**
 
-2. Download your preffered version of an [Ubuntu desktop .iso file](https://www.ubuntu.com/download/desktop) targeted for amd/i386, for example `ubuntu-16.04.3-desktop-amd64.iso`.  (This guide was validated against v16.04)
+Download and install the latest version of [Virtual Box](https://www.virtualbox.org/)
 
-3. Create an Ubuntu VM as follows
+**Download Ubuntu .iso**
 
-    * at least 2048 MB RAM
-    * a fixed size drive of at least 20 GB
-    * The first time you start the VM, you will be promted for the startup disk.  Click the folder icon on the bottom right of the dialog, and select the Ubuntu .iso file that you downloaded earlier, then hit **Start**
-    * At the next prompt, hit the **Install Ubuntu** and finish the configuration as you desire
+Download your preffered version of an [Ubuntu desktop .iso file](https://www.ubuntu.com/download/desktop) targeted for amd/i386, for example `ubuntu-16.04.3-desktop-amd64.iso`.  (This guide was validated against v16.04)
 
+**Create an Ubuntu VM**
 
-4. Prepare your Ubuntu environemt to build and run IoTivity
-    ```
-    # Run the following in an Ubuntu terminal
-    sudo apt-get install build-essential git scons libtool autoconf valgrind doxygen wget unzip
-    sudo apt-get install libboost-dev libboost-program-options-dev libboost-thread-dev uuid-dev libexpat1-dev libglib2.0-dev libsqlite3-dev libcurl4-gnutls-dev
-    ```
+Specify at least 2048 MB RAM, and a fixed size drive of at least 20 GB
 
-5. Clone the IoTivity repo
-    ```
-    # Master
-    git clone https://gerrit.iotivity.org/gerrit/iotivity
+The first time you start the VM, you will be promted for the startup disk.  Click the folder icon on the bottom right of the dialog, and select the Ubuntu .iso file that you downloaded earlier, then hit **
+Start**
 
-    # Release branch
-    git clone -b 1.3-rel https://gerrit.iotivity.org/gerrit/iotivity
-    ```
+At the next prompt, hit the **Install Ubuntu** and finish the configuration as you desire
 
-4. Build IoTivity
-    ```
-    # Release Build
-    scons
+**Configure Ubuntu for IoTivity**
 
-    # debug build
-    scons RELEASE=0
+Run the following commands in an Ubuntu terminal
+```
+sudo apt-get install build-essential git scons libtool autoconf valgrind doxygen wget unzip
+sudo apt-get install libboost-dev libboost-program-options-dev libboost-thread-dev uuid-dev libexpat1-dev libglib2.0-dev libsqlite3-dev libcurl4-gnutls-dev
+```
 
-    # Loogging build
-    scons LOGGING=1 LOG_LEVEL=DEBUG
-    ```
+**Clone the IoTivity repo**
+
+```
+# Master
+git clone https://gerrit.iotivity.org/gerrit/iotivity
+
+# Release branch
+git clone -b 1.3-rel https://gerrit.iotivity.org/gerrit/iotivity
+```
+
+**Build IoTivity**
+
+Change direcoty to the `iotivity` directory created by the clone, then run one of the `scons` based builds below.
+
+If it is the first build, you will be prompted to clone additional depndencies.  Copy and paste the the git commands listed and run the scons command again (repeat until all required dependencies have been cloned).
+```
+# Release Build
+scons
+
+# debug build
+scons RELEASE=0
+
+# Loogging build
+scons LOGGING=1 LOG_LEVEL=DEBUG
+```
 
 ## Installing the CTT
 
-## Running the CTT against IoTivity
+**Dowloawd and run the CTT installer**
+
+The the *official CTT release* downloads can be found [here](https://workspace.openconnectivity.org/kws/test_tools/)
+
+If you require a *Pre Release* test version, contact Mitch Ketrick at cpm@openconnectivity.org
+
+Extract the contents of the downloaded zip file into a folder, and run the `setup.exe` installer
+
+## Configure for IoTivity Testing
+
+**Configure Ubuntu for CTT visibility**
+
+Disbale the Ubuntu firewall
+```
+# Check to see if the firewall is enabled
+sudo ufw status
+
+# If the response is `Status: active`, turn it off like so
+sudo ufw disable
+```
+
+Configure the VM for host only networking
+
+1. From the menu bar in the Ubuntu VM window: `Machine -> Settings`
+2. Select the `Network` tab
+3. Make sure that `Attached To` is set to `Host Only Network`
+4. **Note:** If at some point you require internet access within Ubuntu (for example for additional code downloads), you will need to change `Attached To` back to `NAT`
+
+
+Confiture the CTT to communicate on the Ubuntu VMs network interface
+
+1. From the CTT Window bar menu select `Options -> Network Interface`
+2. Click on `VirtualBox Host-Only Network`, then select the corresponding IP address, and hit OK
+
+
+## Runing CTT Tests against IoTivity
+
+For this guide, we will be testing the Iotivity Security Provision server
+
+**Clean out DB files from past runs**
+
+If this is not the first test run of the random pin security server, you will need to delete DB files generated by from previos runs
+```
+# from: iotivity/out/linux/x86_64/release/resource/csdk/security/provisioning/sample
+rm oic_svr_db_server_randompin.dat device_properties.dat
+```
+
+**Start the IoTivity Server**
+```
+# from: iotivity/out/linux/x86_64/release/resource/csdk/security/provisioning/sample
+./sampleserver_randompin
+```
+
+**Run CTT Security Tests**
+
+TBD
+
+## Runing IoTivity sample server and client together
+
+TBD
+
+## Running Iotivity Test Suite
+
+TBD
