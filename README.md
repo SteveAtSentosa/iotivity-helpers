@@ -118,7 +118,7 @@ If this is not the first test run of the random pin security server, you will ne
 # from: iotivity/out/linux/x86_64/release/resource/csdk/security/provisioning/sample
 rm oic_svr_db_server_randompin.dat device_properties.dat
 ```
-> if the CTT reports the message `Pease initiate device to rever to "Ready for OTM" state`, this means that old .dat files are around, and should be deleted as shown above
+> if the CTT reports the message `Pease initiate device to revert to "Ready for OTM" state`, this means that old .dat files are around, and should be deleted as shown above
 
 
 **Start the IoTivity Server**
@@ -163,12 +163,71 @@ If everything is configured correctly, this test should run to completion and pa
 14:50:43 PASS Test case result: PASSED
 ```
 
-> if the CTT reports the message `Pease initiate device to rever to "Ready for OTM" state`, this means that old sampleserver_randompin DB files are around, and should be deleted as shown above
+> if the CTT reports the message `Pease initiate device to revert to "Ready for OTM" state`, this means that old sampleserver_randompin DB files are around, and should be deleted as shown above
 
 
-## Runing IoTivity server and client samples together
+## Runing IoTivity security client/server samples
 
-TBD
+In your ubuntu install, change directory to
+```iotivity/out/linux/x86_64/release/resource/csdk/security/provisioning/sample```
+
+```
+# In terminal window 1
+./sampleserver_justworks
+
+# In terminal window 2
+./provisioningclient
+```
+
+if you have run these samples and you want to start fresh, you will need to remove and reinstall several database files
+```
+# from: iotivity/out/linux/x86_64/release/resource/csdk/security/provisioning/sample
+rm device_properties.dat oic_svr_db_server_justworks.dat oic_svr_db_client.dat
+
+# from: iotivity (this will install fresh DB files)
+scons
+```
+
+In the client terminal, you will be presented with a list of actions that can be taken.  As an example, try the following:
+
+**Identify the Server**
+
+In the client terminal, enter 10: `Discover All Un/Owned Devices on Network`
+
+In the resonse you should see the server is now identified as being unowned:
+```
+ Discovering All Un/Owned Devices on Network..
+   > Discovered Owned Devices
+     Device List is Empty..
+
+   > Discovered Unowned Devices
+     [1] 12345678-1234-1234-1234-123456789012    ocf.1.1.0
+```
+
+**Regstier/Own the Server**
+
+In the client terminal, enter 20: `Register/Own All Discovered Unowned Devices`
+
+In the response you should see that the server was successfully registgered
+```
+09:04.809 INFO: provisioningclient: Ownership Transfer SUCCEEDED - ctx: Provision Manager Client Application Context
+   > Registered Discovered Unowned Devices
+```
+
+**Verify that the server was registered**
+
+In the client terminal, enter 10 again: `Discover All Un/Owned Devices on Network`
+
+In the response you should see the server is now identified as being owned:
+```
+Discovering All Un/Owned Devices on Network..
+   > Discovered Owned Devices
+     [1] 12345678-1234-1234-1234-123456789012    ocf.1.1.0
+
+   > Discovered Unowned Devices
+     Device List is Empty..
+```
+
 
 ## Running Iotivity Internal Test Suite
 
