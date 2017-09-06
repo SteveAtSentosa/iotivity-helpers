@@ -67,6 +67,8 @@ scons RELEASE=0
 scons LOGGING=1 LOG_LEVEL=DEBUG
 ```
 
+NOTE: If you would just like to run some IoTivity examples, and not the CTT, a Windows machine is not required, and you can skip directly to the **Running IoTivity Security Examples** section below
+
 ## Installing the CTT
 
 **Dowloawd and run the CTT installer**
@@ -165,8 +167,7 @@ If everything is configured correctly, this test should run to completion and pa
 
 > if the CTT reports the message `Pease initiate device to revert to "Ready for OTM" state`, this means that old sampleserver_randompin DB files are around, and should be deleted as shown above
 
-
-## Runing IoTivity security client/server samples
+## Running IoTivity Security Examples
 
 In your ubuntu install, change directory to
 ```iotivity/out/linux/x86_64/release/resource/csdk/security/provisioning/sample```
